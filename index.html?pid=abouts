@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+<title>Sammaru</title>
+<link rel="stylesheet" href="https://sammaru.cbnu.ac.kr:443/css/default.css">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/font-awesome/css/font-awesome.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/css/custom-sky-forms.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/owl.carousel/owl-carousel/owl.carousel.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/common.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/custom.css" type="text/css" media="screen">
+<!--[if lte IE 8]>
+<script src="https://sammaru.cbnu.ac.kr:443/js/html5.js"></script>
+<![endif]-->
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://sammaru.cbnu.ac.kr:443";
+var g5_bbs_url   = "https://sammaru.cbnu.ac.kr:443/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+</script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/jquery-1.8.3.min.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/jquery.menu.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/common.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/wrest.js"></script>
+
+</head>
+<body>
+<!--[if lt IE 9]><link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/css/sky-forms-ie8.css"><![endif]-->
+<div class="wrapper">
+<div class="boxed-layout container">
+<div class="topbar">
+<div class="container">
+<ul class="list-inline list-unstyled left">
+<li>
+<a id="bookmarkme" href="javascript:void(0);" rel="sidebar" title="bookmark this page">북마크</a>
+<script>
+$(function() {
+$("#bookmarkme").click(function() {
+// Mozilla Firefox Bookmark
+if ('sidebar' in window && 'addPanel' in window.sidebar) {
+window.sidebar.addPanel(location.href,document.title,"");
+} else if( /*@cc_on!@*/false) { // IE Favorite
+window.external.AddFavorite(location.href,document.title);
+} else { // webkit - safari/chrome
+alert('단축키 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command' : 'CTRL') + ' + D를 눌러 북마크에 추가하세요.');
+}
+});
+});
+</script>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/current_connect.php">접속자 1</a>
+</li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/faq.php">FAQ</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/qalist.php">1:1문의</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/new.php">새글</a></li>
+</ul>
+<ul class="list-inline list-unstyled right">
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/register.php">회원가입</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/login.php">로그인</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+</div>
+<header class="header">
+<div class="container">
+<div class="logo left">
+<a class="navbar-brand" href="https://sammaru.cbnu.ac.kr:443"><img src="/eyoom/theme/pc_basic2/image/sammaru2.jpg" class="img-responsive" alt="Sammaru HOME"></a>
+</div>
+<div class="search-form left">
+<form name="fsearchbox" method="get" action="https://sammaru.cbnu.ac.kr:443/bbs/search.php" onsubmit="return fsearchbox_submit(this);" class="sky-form">
+<input type="hidden" name="sfl" value="wr_subject||wr_content">
+<input type="hidden" name="sop" value="and">
+<section>
+<label for="sch_stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="sch_stx" class="input input-file">
+<button class="button" type="submit" id="sch_submit"><i class="fa fa-search"></i></button>
+<input type="text" name="stx" id="sch_stx" maxlength="20" class="form-control" placeholder="전체검색" value="">
+</label>
+</section>
+</form>
+<script>
+function fsearchbox_submit(f) {
+if (f.stx.value.length < 2 || f.stx.value == $("#sch_stx").attr("placeholder")) {
+alert("검색어는 두글자 이상 입력하십시오.");
+f.stx.select();
+f.stx.focus();
+return false;
+}
+// 검색에 많은 부하가 걸리는 경우 이 주석을 제거하세요.
+var cnt = 0;
+for (var i=0; i<f.stx.value.length; i++) {
+if (f.stx.value.charAt(i) == ' ') cnt++;
+}
+if (cnt > 1) {
+alert("빠른 검색을 위하여 검색어에 공백은 한개만 입력할 수 있습니다.");
+f.stx.select();
+f.stx.focus();
+return false;
+}
+return true;
+}
+</script>
+</div>
+<article class="ebp-notice-w right">
+<div class="ebp-notice">
+<div class="owl-slider-2">
+<div class="item">
+<div class="notice-subj left ellipsis">
+<span class="label label-e">알림</span> <a href="#">게시물이 없습니다.</a>
+</div>
+<div class="notice-comment right">
+<span class="color-red font-size-11">-&nbsp;</span>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<style>
+.ebp-notice {display:block;overflow:hidden}
+.ebp-notice .notice-subj {width:83%}
+.ebp-notice .notice-comment {width:17%;text-align:right}
+</style>
+<script>
+$(document).ready(function() {
+$(".owl-slider-2").owlCarousel({
+autoPlay : 5000,
+items : [1],
+itemsDesktop : [1199,1],
+itemsMobile : false,
+pagination: false
+});
+});
+</script></article>
+<div class="clear"></div>
+</div>
+</header>
+<div class="eb-navbar nav-background-dark navbar-fixed">
+<nav class="eb-nav nav1 eb-mega-menu">
+<div class="container">
+<div class="eb-default-nav">
+<ul>
+<li class=" nav-home">
+<a href="https://sammaru.cbnu.ac.kr:443">HOME</a>
+</li>
+<li class="">
+<a href="/page/?pid=aboutus" target="_self">
+<i class="fa fa-shield"></i> 샘마루 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/page/?pid=aboutus" target="_self"><i class="fa fa-info-circle"></i>   동아리 소개</a>
+</li>
+<li class="">
+<a href="/page/?pid=1_members" target="_self"><i class="fa fa-group"></i> 회 원<i class="fa fa-angle-right right"></i></a>
+<ul>
+<li class="">
+<a href="/page/?pid=1_members" target="_self">1기</a>
+</li>
+<li class="">
+<a href="/page/?pid=2_members" target="_self">2기</a>
+</li>
+<li class="">
+<a href="/page/?pid=3_members" target="_self">3기</a>
+</li>
+<li class="">
+<a href="/page/?pid=4_members" target="_self">4기</a>
+</li>
+<li class="">
+<a href="/page/?pid=5_members" target="_self">5기</a>
+</li>
+<li class="">
+<a href="/page/?pid=6_members" target="_self">6기</a>
+</li>
+<li class="">
+<a href="/page/?pid=7_members" target="_self">7기</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/page/?pid=active" target="_self"><i class="fa fa-gears"></i> 활 동</a>
+</li>
+<li class="">
+<a href="" target="_self"><i class="fa fa-pencil"></i> 수상 경력</a>
+</li>
+<li class="">
+<a href="/page/?pid=contactus" target="_self"><i class="fa fa-map-marker"></i> Contact Us</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=notice" target="_self">
+<i class="fa fa-exclamation-triangle"></i> 공지 사항 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=notice" target="_self">공지사항</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_data" target="_self">
+<i class="fa fa-file"></i> 자료실 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_data" target="_self">자료실</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_lecture" target="_self">강좌</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_study" target="_self">스터디</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_poject" target="_self">동아리과제</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=freeboard" target="_self">
+<i class="fa fa-comments-o"></i> 자유 게시판 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=freeboard" target="_self">자유게시판</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_picture&page=" target="_self">
+<i class="fa fa-photo"></i> 사진첩 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_picture&page=" target="_self">사진첩</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="http://www.cbnu.ac.kr" target="_blank">
+<i class="fa fa-university "></i> 충북대학교 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="http://www.cbnu.ac.kr" target="_blank">충북대학교</a>
+</li>
+<li class="">
+<a href="http://gaesin.chungbuk.ac.kr/login.html" target="_blank">종합정보시스템</a>
+</li>
+<li class="">
+<a href="https://software.cbnu.ac.kr/" target="_blank">소프트웨어학과</a>
+</li>
+<li class="">
+<a href="https://ecampus.cbnu.ac.kr/" target="_blank">ecampus</a>
+</li>
+<li class="">
+<a href="https://dorm.chungbuk.ac.kr/" target="_blank">기숙사</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="eb-mega-nav">
+<div class="dropdown eb-mega-menu-full">
+<a href="javascript:void(0);" class="dropdown-toggle eb-mega-btn" data-hover="dropdown">
+<i class="fa fa-align-justify"></i> 전체메뉴
+</a>
+<ul class="dropdown-menu">
+<li>
+<div class="eb-mega-menu-content">
+<div class="container">
+<div class="eb-height-eq">
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>동아리 소개</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/page/?pid=aboutus">- 소 개</a></li>
+<li><a href="#">- 회 원</a></li>
+<li><a href="#">- 활 동</a></li>
+<li><a href="#">- 수상 경력</a></li>
+<li><a href="#">- Contact us</a></li>
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>공지 사항</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=notice">- 공지 사항</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>자료실</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_data">- 자료실</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_lecture">- 강좌</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>자유 게시판</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=freeboard">- 자유 게시판</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>사진첩</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_picture&page=">- 사진첩</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>충북대학교</h5></li>
+<li><a href="http://www.chungbuk.ac.kr">- 충북대학교</a></li>
+<li><a href="http://gaesin.chungbuk.ac.kr/login.html">- 종합정보시스템</a></li>
+<li><a href="https://software.cbnu.ac.kr/">- 소프트웨어학과</a></li>
+<li><a href="https://ecampus.cbnu.ac.kr/">- ecampus</a></li>
+<li><a href="https://dorm.chungbuk.ac.kr/">- 기숙사</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<div class="eb-title">
+<div class="container">
+<h3 class="left"><i class="fa fa-map-marker"></i> 미등록페이지</h3>
+<ul class="right list-inline con-map">
+메뉴등록이 안된 페이지입니다.</ul>
+</div>
+<div class="clear"></div>
+</div>
+<div class="ebp-body">
+<div class="container">
+<div id="main-content" class="content content-left">
+
+<script>
+alert("해당 스킨파일이 존재하지 않습니다.");
+//document.location.href = "";
+//alert('history.back();');
+history.back();
+</script>
+
+<noscript>
+<div id="validation_check">
+    <h1>다음 항목에 오류가 있습니다.</h1>
+    <p class="cbg">
+        해당 스킨파일이 존재하지 않습니다.    </p>
+        <div class="btn_confirm">
+        <a href="">돌아가기</a>
+    </div>
+    
+</div>
+</noscript>
+
+
+
+<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+<!--[if lte IE 7]>
+<script>
+$(function() {
+    var $sv_use = $(".sv_use");
+    var count = $sv_use.length;
+
+    $sv_use.each(function() {
+        $(this).css("z-index", count);
+        $(this).css("position", "relative");
+        count = count - 1;
+    });
+});
+</script>
+<![endif]-->
+
+</body>
+</html>

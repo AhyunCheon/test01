@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+<title>Sammaru</title>
+<link rel="stylesheet" href="https://sammaru.cbnu.ac.kr:443/css/default.css">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/font-awesome/css/font-awesome.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/css/custom-sky-forms.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/owl.carousel/owl-carousel/owl.carousel.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/common.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/eyoom/theme/pc_basic2/css/custom.css" type="text/css" media="screen">
+<!--[if lte IE 8]>
+<script src="https://sammaru.cbnu.ac.kr:443/js/html5.js"></script>
+<![endif]-->
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://sammaru.cbnu.ac.kr:443";
+var g5_bbs_url   = "https://sammaru.cbnu.ac.kr:443/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+</script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/jquery-1.8.3.min.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/jquery.menu.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/common.js"></script>
+<script src="https://sammaru.cbnu.ac.kr:443/js/wrest.js"></script>
+
+</head>
+<body>
+<div id="hd_pop">
+<h2>팝업레이어 알림</h2>
+<span class="sound_only">팝업레이어 알림이 없습니다.</span>
+</div>
+<style>
+.hd_pops {border:3px solid #000;-webkit-box-shadow:0 4px 9px rgba(0, 0, 0, .1);box-shadow:0 4px 9px rgba(0, 0, 0, .1)}
+.hd_pops_footer {background:#000}
+</style>
+<script>
+$(function() {
+$(".hd_pops_reject").click(function() {
+var id = $(this).attr('class').split(' ');
+var ck_name = id[1];
+var exp_time = parseInt(id[2]);
+$("#"+id[1]).css("display", "none");
+set_cookie(ck_name, 1, exp_time, g5_cookie_domain);
+});
+$('.hd_pops_close').click(function() {
+var idb = $(this).attr('class').split(' ');
+$('#'+idb[1]).css('display','none');
+});
+$("#hd").css("z-index", 1000);
+});
+</script><!--[if lt IE 9]><link rel="stylesheet" href="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/css/sky-forms-ie8.css"><![endif]-->
+<div class="wrapper">
+<div class="boxed-layout container">
+<div class="topbar">
+<div class="container">
+<ul class="list-inline list-unstyled left">
+<li>
+<a id="bookmarkme" href="javascript:void(0);" rel="sidebar" title="bookmark this page">북마크</a>
+<script>
+$(function() {
+$("#bookmarkme").click(function() {
+// Mozilla Firefox Bookmark
+if ('sidebar' in window && 'addPanel' in window.sidebar) {
+window.sidebar.addPanel(location.href,document.title,"");
+} else if( /*@cc_on!@*/false) { // IE Favorite
+window.external.AddFavorite(location.href,document.title);
+} else { // webkit - safari/chrome
+alert('단축키 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command' : 'CTRL') + ' + D를 눌러 북마크에 추가하세요.');
+}
+});
+});
+</script>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/current_connect.php">접속자 1</a>
+</li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/faq.php">FAQ</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/qalist.php">1:1문의</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/new.php">새글</a></li>
+</ul>
+<ul class="list-inline list-unstyled right">
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/register.php">회원가입</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/bbs/login.php">로그인</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+</div>
+<header class="header">
+<div class="container">
+<div class="logo left">
+<a class="navbar-brand" href="https://sammaru.cbnu.ac.kr:443"><img src="/eyoom/theme/pc_basic2/image/sammaru2.jpg" class="img-responsive" alt="Sammaru HOME"></a>
+</div>
+<div class="search-form left">
+<form name="fsearchbox" method="get" action="https://sammaru.cbnu.ac.kr:443/bbs/search.php" onsubmit="return fsearchbox_submit(this);" class="sky-form">
+<input type="hidden" name="sfl" value="wr_subject||wr_content">
+<input type="hidden" name="sop" value="and">
+<section>
+<label for="sch_stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="sch_stx" class="input input-file">
+<button class="button" type="submit" id="sch_submit"><i class="fa fa-search"></i></button>
+<input type="text" name="stx" id="sch_stx" maxlength="20" class="form-control" placeholder="전체검색" value="">
+</label>
+</section>
+</form>
+<script>
+function fsearchbox_submit(f) {
+if (f.stx.value.length < 2 || f.stx.value == $("#sch_stx").attr("placeholder")) {
+alert("검색어는 두글자 이상 입력하십시오.");
+f.stx.select();
+f.stx.focus();
+return false;
+}
+// 검색에 많은 부하가 걸리는 경우 이 주석을 제거하세요.
+var cnt = 0;
+for (var i=0; i<f.stx.value.length; i++) {
+if (f.stx.value.charAt(i) == ' ') cnt++;
+}
+if (cnt > 1) {
+alert("빠른 검색을 위하여 검색어에 공백은 한개만 입력할 수 있습니다.");
+f.stx.select();
+f.stx.focus();
+return false;
+}
+return true;
+}
+</script>
+</div>
+<article class="ebp-notice-w right">
+<div class="ebp-notice">
+<div class="owl-slider-2">
+<div class="item">
+<div class="notice-subj left ellipsis">
+<span class="label label-e">알림</span> <a href="#">게시물이 없습니다.</a>
+</div>
+<div class="notice-comment right">
+<span class="color-red font-size-11">-&nbsp;</span>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<style>
+.ebp-notice {display:block;overflow:hidden}
+.ebp-notice .notice-subj {width:83%}
+.ebp-notice .notice-comment {width:17%;text-align:right}
+</style>
+<script>
+$(document).ready(function() {
+$(".owl-slider-2").owlCarousel({
+autoPlay : 5000,
+items : [1],
+itemsDesktop : [1199,1],
+itemsMobile : false,
+pagination: false
+});
+});
+</script></article>
+<div class="clear"></div>
+</div>
+</header>
+<div class="eb-navbar nav-background-dark navbar-fixed">
+<nav class="eb-nav nav1 eb-mega-menu">
+<div class="container">
+<div class="eb-default-nav">
+<ul>
+<li class="active nav-home">
+<a href="https://sammaru.cbnu.ac.kr:443">HOME</a>
+</li>
+<li class="">
+<a href="/page/?pid=aboutus" target="_self">
+<i class="fa fa-shield"></i> 샘마루 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/page/?pid=aboutus" target="_self"><i class="fa fa-info-circle"></i>   동아리 소개</a>
+</li>
+<li class="">
+<a href="/page/?pid=1_members" target="_self"><i class="fa fa-group"></i> 회 원<i class="fa fa-angle-right right"></i></a>
+<ul>
+<li class="">
+<a href="/page/?pid=1_members" target="_self">1기</a>
+</li>
+<li class="">
+<a href="/page/?pid=2_members" target="_self">2기</a>
+</li>
+<li class="">
+<a href="/page/?pid=3_members" target="_self">3기</a>
+</li>
+<li class="">
+<a href="/page/?pid=4_members" target="_self">4기</a>
+</li>
+<li class="">
+<a href="/page/?pid=5_members" target="_self">5기</a>
+</li>
+<li class="">
+<a href="/page/?pid=6_members" target="_self">6기</a>
+</li>
+<li class="">
+<a href="/page/?pid=7_members" target="_self">7기</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/page/?pid=active" target="_self"><i class="fa fa-gears"></i> 활 동</a>
+</li>
+<li class="">
+<a href="" target="_self"><i class="fa fa-pencil"></i> 수상 경력</a>
+</li>
+<li class="">
+<a href="/page/?pid=contactus" target="_self"><i class="fa fa-map-marker"></i> Contact Us</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=notice" target="_self">
+<i class="fa fa-exclamation-triangle"></i> 공지 사항 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=notice" target="_self">공지사항</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_data" target="_self">
+<i class="fa fa-file"></i> 자료실 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_data" target="_self">자료실</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_lecture" target="_self">강좌</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_study" target="_self">스터디</a>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_poject" target="_self">동아리과제</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=freeboard" target="_self">
+<i class="fa fa-comments-o"></i> 자유 게시판 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=freeboard" target="_self">자유게시판</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_picture&page=" target="_self">
+<i class="fa fa-photo"></i> 사진첩 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="/bbs/board.php?bo_table=sam_picture&page=" target="_self">사진첩</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="http://www.cbnu.ac.kr" target="_blank">
+<i class="fa fa-university "></i> 충북대학교 <i class="fa fa-caret-down"></i></a>
+<ul>
+<li class="">
+<a href="http://www.cbnu.ac.kr" target="_blank">충북대학교</a>
+</li>
+<li class="">
+<a href="http://gaesin.chungbuk.ac.kr/login.html" target="_blank">종합정보시스템</a>
+</li>
+<li class="">
+<a href="https://software.cbnu.ac.kr/" target="_blank">소프트웨어학과</a>
+</li>
+<li class="">
+<a href="https://ecampus.cbnu.ac.kr/" target="_blank">ecampus</a>
+</li>
+<li class="">
+<a href="https://dorm.chungbuk.ac.kr/" target="_blank">기숙사</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="eb-mega-nav">
+<div class="dropdown eb-mega-menu-full">
+<a href="javascript:void(0);" class="dropdown-toggle eb-mega-btn" data-hover="dropdown">
+<i class="fa fa-align-justify"></i> 전체메뉴
+</a>
+<ul class="dropdown-menu">
+<li>
+<div class="eb-mega-menu-content">
+<div class="container">
+<div class="eb-height-eq">
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>동아리 소개</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/page/?pid=aboutus">- 소 개</a></li>
+<li><a href="#">- 회 원</a></li>
+<li><a href="#">- 활 동</a></li>
+<li><a href="#">- 수상 경력</a></li>
+<li><a href="#">- Contact us</a></li>
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>공지 사항</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=notice">- 공지 사항</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>자료실</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_data">- 자료실</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_lecture">- 강좌</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>자유 게시판</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=freeboard">- 자유 게시판</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>사진첩</h5></li>
+<li><a href="https://sammaru.cbnu.ac.kr/bbs/board.php?bo_table=sam_picture&page=">- 사진첩</a></li>
+<!--
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+<li><a href="#">- 게시판명 설정</a></li>
+-->
+</ul>
+</div>
+<div class="mega-col eb-height-eq-in">
+<ul class="list-unstyled eb-height-eq-list">
+<li><h5>충북대학교</h5></li>
+<li><a href="http://www.chungbuk.ac.kr">- 충북대학교</a></li>
+<li><a href="http://gaesin.chungbuk.ac.kr/login.html">- 종합정보시스템</a></li>
+<li><a href="https://software.cbnu.ac.kr/">- 소프트웨어학과</a></li>
+<li><a href="https://ecampus.cbnu.ac.kr/">- ecampus</a></li>
+<li><a href="https://dorm.chungbuk.ac.kr/">- 기숙사</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<div class="header-slider">
+<div id="owl-header-slider" class="owl-carousel owl-theme">
+<div class="item header-slider-bg">
+<img src="/eyoom/theme/pc_basic2/image/header_slider/sammaru_main2.jpg" width="1100px" class="img-responsive">
+<div class="container">
+<h1>Welcome to Sammaru</h1>
+<h2>Sammaru 을 방문해 주셔서 감사합니다.</h2>
+<p>Sammaru는 'Software Algorithm Master'의 약자 SAM과 '최고', '하늘'을 뜻하는 순 우리말 마루를 합쳐 만들어진 알고리즘 동아리 입니다.<br>알고리즘에 관련된 학술 세미나를 편성하여 동아리 팀원간의 커뮤니티를 만들고 점진적인 발전을 이루고 있습니다.<br></p>
+</div>
+</div>
+<div class="item header-slider-bg">
+<img src="/eyoom/theme/pc_basic2/image/header_slider/sammaru_main3.jpg" width="1100px" class="img-responsive">
+<div class="container">
+<h1>Do One's Best</h1>
+<p>Let's Go MT</p>
+<!--<p><br>샘마루 학생들은 누구보다도 열심히 꿈을 위해 노력합니다.<br>자신이 이루고자 하는 꿈을 찾고, 그 꿈을 향해 함께 서로 노력하는 샘마루.<br><br>Ama vitam quam vivis, vive vitam quam amas</p>-->
+<!--당신의 삶을 사랑하고, 원하는 삶을 살아라-->
+<div class="t-center margin-top-10">
+<a href="https://sammaru.cbnu.ac.kr:443/page/?pid=aboutus" class="eb-button eb-button-yellow eb-button-large">About Us</a>
+</div>
+</div>
+</div>
+<div class="item header-slider-bg">
+<img src="/eyoom/theme/pc_basic2/image/header_slider/hackyeon.jpg" class="img-responsive">
+<div class="container">
+<h1>Do One's Best</h1>
+<p>밤샘마루</p>
+<!--<p><br>샘마루 학생들은 누구보다도 열심히 꿈을 위해 노력합니다.<br>자신이 이루고자 하는 꿈을 찾고, 그 꿈을 향해 함께 서로 노력하는 샘마루.<br><br>Ama vitam quam vivis, vive vitam quam amas</p>-->
+<!--당신의 삶을 사랑하고, 원하는 삶을 살아라-->
+<div class="t-center margin-top-10">
+<a href="https://sammaru.cbnu.ac.kr:443/page/?pid=aboutus" class="eb-button eb-button-yellow eb-button-large">About Us</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ebp-body">
+<div class="container">
+<div id="main-content" class="content content-left">
+<div class="main-banner-slider margin-bottom-20">
+<div class="owl-navi">
+<a class="owl-btn prev-main-banner"><i class="fa fa-angle-left"></i></a>
+<a class="owl-btn next-main-banner"><i class="fa fa-angle-right"></i></a>
+</div>
+<div class="owl-slider-main-banner">
+<article class="item">
+<a href="#">
+<img src="/eyoom/theme/pc_basic2/image/banner_slider/1st_grade.png" class="img-responsive">
+<div class="banner-slider-text">
+<!--	<h1>Sammaru OPEN!</h1>
+<p>Lorem ipsum dulor sit amet, consectetur sequi ex quam sunt delectus adipisicing elft.<br>Veniam aut tempore illum, dulor nemo quae nulla.</p>-->
+</div>
+</a>
+</article>
+<article class="item">
+<a href="#">
+<img src="/eyoom/theme/pc_basic2/image/banner_slider/banner_slider_2.jpg">
+<div class="banner-slider-text">
+<h1>Sammaru EVENT!</h1>
+<p>Lorem ipsum dulor sit amet, consectetur sequi ex quam sunt delectus adipisicing elft.<br>Veniam aut tempore illum, dulor nemo quae nulla.</p>
+</div>
+</a>
+</article>
+<article class="item">
+<a href="#">
+<img src="/eyoom/theme/pc_basic2/image/banner_slider/banner_slider_3.jpg">
+<div class="banner-slider-text">
+<h1>Sammaru NOTICE!</h1>
+<p>Lorem ipsum dulor sit amet, consectetur sequi ex quam sunt delectus adipisicing elft.<br>Veniam aut tempore illum, dulor nemo quae nulla.</p>
+</div>
+</a>
+</article>
+</div>
+</div>
+<div class="main-tab tab-latest-text-padding margin-bottom-20">
+<div class="tab-e2">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#main-tlt-1" data-toggle="tab">공지 사항</a></li>
+<li><a href="#main-tlt-2" data-toggle="tab">자료실</a></li>
+<li><a href="#main-tlt-3" data-toggle="tab">자유게시판</a></li>
+<li class="last"><a href="#main-tlt-4" data-toggle="tab">사진첩</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade active in" id="main-tlt-1">
+<div class="tab-content-wrap">
+<div class="tab-latest-text">
+<ul class="list-unstyled">
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=notice&amp;wr_id=4">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> 2019년도 샘마루와 함께하게 된 여러분들 모두 환영합니다!</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">관리자</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-03-21</div>
+</a>
+</li>
+</ul>
+</div>
+<style>
+.tab-latest-text ul {margin-bottom:0}
+.tab-latest-text li {position:relative;overflow:hidden;padding:2px 0;font-size:12px}
+.tab-latest-text .txt-subj {position:relative;width:70%;padding-right:0;padding-left:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-text .txt-comment {display: inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.tab-latest-text .txt-member {position:relative;overflow:hidden;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;width:15%;float:left}
+.tab-latest-text .txt-photo img {width:17px;height:17px;margin-right:2px}
+.tab-latest-text .txt-photo .txt-user-icon {width:17px;height:17px;font-size:11px;line-height:17px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.tab-latest-text .txt-nick {font-size:12px;color:#777}
+.tab-latest-text .txt-time {position:relative;overflow:hidden;width:15%;font-size:12px;text-align:right;color:#555;float:left}
+.tab-latest-text .txt-time .i-color {color:#bbb}
+.tab-latest-text a:hover .txt-subj {text-decoration:underline}
+.tab-latest-text a:hover .txt-nick {color:#000}
+.tab-latest-text a:hover .txt-time i {color:#ff2a00}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tlt-2">
+<div class="tab-content-wrap">
+<div class="tab-latest-text">
+<ul class="list-unstyled">
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=31">
+<div class="txt-subj">
+- 19년도 2학기 1학년 세미나 ppt3</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">최병도</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-11-02</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=30">
+<div class="txt-subj">
+- Re: 19년도 2학기 1학년 세미나 ppt2(수정)</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">최병도</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-10-29</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=28">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> 19년도 2학기 1학년 세미나 ppt1</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">최병도</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-10-16</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=27">
+<div class="txt-subj">
+- 19년도 2학기 1학년 세미나 ppt1</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">최병도</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-10-02</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=26">
+<div class="txt-subj">
+- 201...8년도 2학기 홍장의교수님 소프트웨어공학 6장까지 필기</div>
+<div class="txt-member">
+<span class="txt-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="txt-nick">15김또띠</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2019-06-17</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=22">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> 2학년 자료구조 세미나 3주차</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">15이채은</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2018-04-12</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=21">
+<div class="txt-subj">
+- 2학년 자료구조 세미나 2주차</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">15이채은</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2018-03-29</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=19">
+<div class="txt-subj">
+- <span class="txt-comment">+2</span> 2학년 자료구조 세미나 자료</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">15이채은</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2018-03-22</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=13">
+<div class="txt-subj">
+- 2016년 C언어 연합 세미나 PPT_3주차</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">14장정현</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-31</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=12">
+<div class="txt-subj">
+- 2016년 C언어 연합 세미나 PPT_2주차</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">14장정현</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-31</div>
+</a>
+</li>
+</ul>
+</div>
+<style>
+.tab-latest-text ul {margin-bottom:0}
+.tab-latest-text li {position:relative;overflow:hidden;padding:2px 0;font-size:12px}
+.tab-latest-text .txt-subj {position:relative;width:70%;padding-right:0;padding-left:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-text .txt-comment {display: inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.tab-latest-text .txt-member {position:relative;overflow:hidden;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;width:15%;float:left}
+.tab-latest-text .txt-photo img {width:17px;height:17px;margin-right:2px}
+.tab-latest-text .txt-photo .txt-user-icon {width:17px;height:17px;font-size:11px;line-height:17px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.tab-latest-text .txt-nick {font-size:12px;color:#777}
+.tab-latest-text .txt-time {position:relative;overflow:hidden;width:15%;font-size:12px;text-align:right;color:#555;float:left}
+.tab-latest-text .txt-time .i-color {color:#bbb}
+.tab-latest-text a:hover .txt-subj {text-decoration:underline}
+.tab-latest-text a:hover .txt-nick {color:#000}
+.tab-latest-text a:hover .txt-time i {color:#ff2a00}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tlt-3">
+<div class="tab-content-wrap">
+<div class="tab-latest-text">
+<ul class="list-unstyled">
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=49">
+<div class="txt-subj">
+- <span class="txt-comment">+3</span> 심심</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">14213</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2018-04-17</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=42">
+<div class="txt-subj">
+- d3</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">관리자</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-11-03</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=30">
+<div class="txt-subj">
+- 발표자료 제작이나 디자인에 유용한 사이트 모음</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">14곽다은</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-06-22</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=28">
+<div class="txt-subj">
+- <span class="txt-comment">+2</span> 초보 개발자가 알아야할 5가지 기술</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">14장정현</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-05-22</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=26">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> 도움이 되는 글</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">조기우</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-05-10</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=23">
+<div class="txt-subj">
+- <span class="txt-comment">+2</span> 나 넘나 잘생긴것?ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">진도도그</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-04-21</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=13">
+<div class="txt-subj">
+- <span class="txt-comment">+7</span> ㅎㅇ</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">10한종현</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-18</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=11">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> ㅎㅇ</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">13고현민</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-13</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=9">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> ㅎㅇ</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">10강전희</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-10</div>
+</a>
+</li>
+<li>
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=freeboard&amp;wr_id=7">
+<div class="txt-subj">
+- <span class="txt-comment">+1</span> 세돌이형 짐... ㅠㅠ</div>
+<div class="txt-member">
+<span class="txt-photo"><span class="txt-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="txt-nick">11최창헌</span>
+</div>
+<div class="txt-time">
+<i class="fa fa-clock-o i-color"></i> 2016-03-09</div>
+</a>
+</li>
+</ul>
+</div>
+<style>
+.tab-latest-text ul {margin-bottom:0}
+.tab-latest-text li {position:relative;overflow:hidden;padding:2px 0;font-size:12px}
+.tab-latest-text .txt-subj {position:relative;width:70%;padding-right:0;padding-left:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-text .txt-comment {display: inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.tab-latest-text .txt-member {position:relative;overflow:hidden;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;width:15%;float:left}
+.tab-latest-text .txt-photo img {width:17px;height:17px;margin-right:2px}
+.tab-latest-text .txt-photo .txt-user-icon {width:17px;height:17px;font-size:11px;line-height:17px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.tab-latest-text .txt-nick {font-size:12px;color:#777}
+.tab-latest-text .txt-time {position:relative;overflow:hidden;width:15%;font-size:12px;text-align:right;color:#555;float:left}
+.tab-latest-text .txt-time .i-color {color:#bbb}
+.tab-latest-text a:hover .txt-subj {text-decoration:underline}
+.tab-latest-text a:hover .txt-nick {color:#000}
+.tab-latest-text a:hover .txt-time i {color:#ff2a00}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tlt-4">
+<div class="tab-content-wrap">
+<div class="tab-latest-image">
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=26">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-1908847772_BJwfAPoy_f4c153e2cf6a4e33283e2e16fd3833e8b61e107e_300x0.jpg">
+<span class="img-comment">+1</span><div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">16천아현</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2019 샘마루 세미나</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=24">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-1908836839_LRhEGgr8_c3b600bc81f050bc20800aa6d94737041eb4e847_300x0.jpg">
+<span class="img-comment">+1</span><div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">16천아현</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2019 샘마루 MT</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=23">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-1908847803_Q9Pj6oCY_3ec75070f9810c0d594ca5036fdf7ae3ffb5800a_300x0.jpg">
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">16천아현</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2019학년도 졸업식</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=20">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-831467301_inX52YIj_3dd521b3ed81255292bc6a8d7956f0473fb59076_300x0.jpg">
+<span class="img-comment">+1</span><div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2018 선후배 모임</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=19">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-3232235777_tTZ6VILg_4937ad6c338b55146f97c584fd6e1b86490a74cf_300x0.jpg">
+<span class="img-comment">+1</span><div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2018 전정대 체육대회</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=18">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-831467058_otAEgVYw_bfdc27ca66a7d9101c1d7b7621f4bd7a4cd03347_300x0.jpg">
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>6조 친해지길 바래(보드게임)</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=16">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-3531444648_pUmNxKc8_cad2cc70995572c5bf5ee5f45468e48320572e38_300x0.jpg">
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>친해지길 바래 4조(롯데월드)</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=15">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-3531444648_l7cd0hbm_26c8de681f1edbfcfb4c2e6049fe1d989385e15c_300x0.jpg">
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>5조 친해지길 바래(볼링)</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=14">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-3531444648_emN6h1RY_e2b64baf75ffdcc91d7612e46f59e2b2b1156b3c_300x0.jpg">
+<span class="img-comment">+1</span><div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>1조 친해지길 바래(솔못에서 밥먹기)</h5>
+</div>
+</a>
+</div>
+</div>
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_picture&amp;wr_id=13">
+<div class="img-box">
+<img class="img-responsive" src="https://sammaru.cbnu.ac.kr:443/data/file/sam_picture/thumb-3531444648_XfPsrubN_5a00a02dc3f0706053934bf50e782784db622e76_300x0.jpg">
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">최재우</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2조 친해지길 바래(쓸데없는 선물)</h5>
+</div>
+</a>
+</div>
+</div>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.tab-latest-image .img-item');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.tab-latest-image .img-item-wrap {position:relative;width:20%;float:left}
+.tab-latest-image .img-item {position:relative;overflow:hidden;margin:3px}
+.tab-latest-image .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.tab-latest-image .img-box .no-image {color:#888;font-size:11px}
+.tab-latest-image .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.tab-latest-image .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.tab-latest-image .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.tab-latest-image .img-photo img {width:20px;height:20px;margin-right:7px;float:left}
+.tab-latest-image .img-photo .img-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:7px;float:left}
+.tab-latest-image .img-nick {font-size:11px;color:#fff;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-image .img-subj h5 {color:#000;font-size:12px;margin:8px 0; font-weight:normal;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.tab-latest-image a:hover .img-subj h5 {color:#ff2a00;text-decoration:underline}
+</style></div>
+</div>
+</div>
+</div>
+</div>
+<!-- made by 이일섭-->
+<!--
+<script>
+window.fbAsyncInit = function() {
+FB.init({
+appId      : '229955040679265',
+xfbml      : true,
+version    : 'v2.5'
+});
+};
+(function(d, s, id){
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<div
+class="fb-like"
+data-share="true"
+data-width="450"
+data-show-faces="true">
+</div>
+-->
+<ul id="comp_if">
+<li class="com_bg1">
+<h2>샘마루 소개</h2>
+<p>Security and Management<br>
+'최고', '하늘'을 뜻하는 순우리말 '마루'</p>
+<a href="page/?pid=aboutus">동아리 소개</a>
+</li>
+<li class="com_bg2">
+<h2>동아리 회원</h2>
+<p>동아리 소속 재학생</p>
+<a href="page/?pid=10_members">동아리 회원</a>
+</li>
+<li class="com_bg3">
+<h2>샘마루 클라우드</h2>
+<p>Sammaru Cloud Service<br></p>
+<a href="owncloud">샘마루 클라우드</a>
+</li>
+</ul>
+<!-- 밑의 게시판 주석 by 이일섭
+<div class="main-tab tab-latest-image-padding margin-bottom-20">
+<div class="tab-e2">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#main-tli-1" data-toggle="tab">게시판명</a></li>
+<li><a href="#main-tli-2" data-toggle="tab">게시판명</a></li>
+<li><a href="#main-tli-3" data-toggle="tab">게시판명</a></li>
+<li class="last"><a href="#main-tli-4" data-toggle="tab">게시판명</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade active in" id="main-tli-1">
+<div class="tab-content-wrap">
+<div class="tab-latest-image">
+<div class="img-item-wrap">
+<div class="img-item">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=notice&amp;wr_id=4">
+<div class="img-box">
+<span class="no-image">No Image</span>
+<div class="img-caption">
+<div class="img-photo"><span class="img-user-icon"><i class="fa fa-user"></i></span></div>
+<div class="img-nick">관리자</div>
+</div>
+</div>
+<div class="img-subj">
+<h5>2019년도 샘마루와 함께하게 된 여러분들 모두 환영합니다!</h5>
+</div>
+</a>
+</div>
+</div>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.tab-latest-image .img-item');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.tab-latest-image .img-item-wrap {position:relative;width:20%;float:left}
+.tab-latest-image .img-item {position:relative;overflow:hidden;margin:3px}
+.tab-latest-image .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.tab-latest-image .img-box .no-image {color:#888;font-size:11px}
+.tab-latest-image .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.tab-latest-image .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.tab-latest-image .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.tab-latest-image .img-photo img {width:20px;height:20px;margin-right:7px;float:left}
+.tab-latest-image .img-photo .img-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:7px;float:left}
+.tab-latest-image .img-nick {font-size:11px;color:#fff;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-image .img-subj h5 {color:#000;font-size:12px;margin:8px 0; font-weight:normal;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.tab-latest-image a:hover .img-subj h5 {color:#ff2a00;text-decoration:underline}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tli-2">
+<div class="tab-content-wrap">
+<div class="tab-latest-image">
+<p class="t-center font-size-12 margin-top-30">최신글이 없습니다.</p>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.tab-latest-image .img-item');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.tab-latest-image .img-item-wrap {position:relative;width:20%;float:left}
+.tab-latest-image .img-item {position:relative;overflow:hidden;margin:3px}
+.tab-latest-image .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.tab-latest-image .img-box .no-image {color:#888;font-size:11px}
+.tab-latest-image .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.tab-latest-image .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.tab-latest-image .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.tab-latest-image .img-photo img {width:20px;height:20px;margin-right:7px;float:left}
+.tab-latest-image .img-photo .img-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:7px;float:left}
+.tab-latest-image .img-nick {font-size:11px;color:#fff;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-image .img-subj h5 {color:#000;font-size:12px;margin:8px 0; font-weight:normal;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.tab-latest-image a:hover .img-subj h5 {color:#ff2a00;text-decoration:underline}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tli-3">
+<div class="tab-content-wrap">
+<div class="tab-latest-image">
+<p class="t-center font-size-12 margin-top-30">최신글이 없습니다.</p>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.tab-latest-image .img-item');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.tab-latest-image .img-item-wrap {position:relative;width:20%;float:left}
+.tab-latest-image .img-item {position:relative;overflow:hidden;margin:3px}
+.tab-latest-image .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.tab-latest-image .img-box .no-image {color:#888;font-size:11px}
+.tab-latest-image .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.tab-latest-image .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.tab-latest-image .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.tab-latest-image .img-photo img {width:20px;height:20px;margin-right:7px;float:left}
+.tab-latest-image .img-photo .img-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:7px;float:left}
+.tab-latest-image .img-nick {font-size:11px;color:#fff;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-image .img-subj h5 {color:#000;font-size:12px;margin:8px 0; font-weight:normal;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.tab-latest-image a:hover .img-subj h5 {color:#ff2a00;text-decoration:underline}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="main-tli-4">
+<div class="tab-content-wrap">
+<div class="tab-latest-image">
+<p class="t-center font-size-12 margin-top-30">최신글이 없습니다.</p>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.tab-latest-image .img-item');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.tab-latest-image .img-item-wrap {position:relative;width:20%;float:left}
+.tab-latest-image .img-item {position:relative;overflow:hidden;margin:3px}
+.tab-latest-image .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.tab-latest-image .img-box .no-image {color:#888;font-size:11px}
+.tab-latest-image .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.tab-latest-image .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.tab-latest-image .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.tab-latest-image .img-photo img {width:20px;height:20px;margin-right:7px;float:left}
+.tab-latest-image .img-photo .img-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:7px;float:left}
+.tab-latest-image .img-nick {font-size:11px;color:#fff;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.tab-latest-image .img-subj h5 {color:#000;font-size:12px;margin:8px 0; font-weight:normal;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.tab-latest-image a:hover .img-subj h5 {color:#ff2a00;text-decoration:underline}
+</style></div>
+</div>
+</div>
+</div>
+</div>
+<div class="margin-bottom-20">
+<div class="left width-half-main-px">
+<div class="headline">
+<h6><a href='https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=게시판id'>게시판명</a></h6>
+</div>
+<div class="basic-latest">
+<ul class="list-unstyled">
+<li><p class="t-center font-size-12 margin-top-30">최신글이 없습니다.</p></li>
+</ul>
+</div>
+<style>
+.basic-latest {position:relative;overflow:hidden;border:1px solid #e5e5e5;padding:15px 10px;min-height:220px}
+.basic-latest ul {margin-bottom:0}
+.basic-latest li {position:relative;overflow:hidden;padding:2px 0;font-size:12px}
+.basic-latest .basic-subj {position:relative;width:70%;padding-right:0;padding-left:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.basic-latest .basic-comment {display: inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.basic-latest .basic-time {position:relative;overflow:hidden;width:30%;font-size:12px;text-align:right;color:#555;float:right}
+.basic-latest .basic-time .i-color {color:#bbb}
+.basic-latest .basic-member {position:relative;overflow:hidden;display:inline-block;width:30%;float:right}
+.basic-latest .basic-photo img {width:17px;height:17px;margin-left:7px;float:right}
+.basic-latest .basic-photo .basic-user-icon {width:17px;height:17px;font-size:11px;line-height:17px;text-align:center;background:#84848a;color:#fff;margin-left:7px;float:right}
+.basic-latest .basic-nick {font-size:12px;color:#888;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:right}
+.basic-latest a:hover .basic-subj {text-decoration:underline}
+.basic-latest a:hover .basic-nick {color:#000}
+.basic-latest a:hover .basic-time i {color:#ff2a00}
+</style></div>
+<div class="right width-half-main-px">
+<div class="headline">
+<h6><a href='https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=게시판id'>게시판명</a></h6>
+</div>
+<div class="basic-latest">
+<ul class="list-unstyled">
+<li><p class="t-center font-size-12 margin-top-30">최신글이 없습니다.</p></li>
+</ul>
+</div>
+<style>
+.basic-latest {position:relative;overflow:hidden;border:1px solid #e5e5e5;padding:15px 10px;min-height:220px}
+.basic-latest ul {margin-bottom:0}
+.basic-latest li {position:relative;overflow:hidden;padding:2px 0;font-size:12px}
+.basic-latest .basic-subj {position:relative;width:70%;padding-right:0;padding-left:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:left}
+.basic-latest .basic-comment {display: inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.basic-latest .basic-time {position:relative;overflow:hidden;width:30%;font-size:12px;text-align:right;color:#555;float:right}
+.basic-latest .basic-time .i-color {color:#bbb}
+.basic-latest .basic-member {position:relative;overflow:hidden;display:inline-block;width:30%;float:right}
+.basic-latest .basic-photo img {width:17px;height:17px;margin-left:7px;float:right}
+.basic-latest .basic-photo .basic-user-icon {width:17px;height:17px;font-size:11px;line-height:17px;text-align:center;background:#84848a;color:#fff;margin-left:7px;float:right}
+.basic-latest .basic-nick {font-size:12px;color:#888;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;float:right}
+.basic-latest a:hover .basic-subj {text-decoration:underline}
+.basic-latest a:hover .basic-nick {color:#000}
+.basic-latest a:hover .basic-time i {color:#ff2a00}
+</style></div>
+<div class="clear"></div>
+</div>
+<div>
+<div class="headline">
+<h6><a href='https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=게시판id'>게시판명</a></h6>
+</div>
+<div class="webzine-latest">
+<p class="text-center font-size-12 margin-top-30">최신글이 없습니다.</p>
+</div>
+<script>
+$(function(){
+var duration = 120;
+var $img_cap = $('.webzine-latest .webzine-img');
+$img_cap.find('.img-box')
+.on('mouseover', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '0px'}, duration);
+})
+.on('mouseout', function(){
+$(this).find('.img-caption').stop(true).animate({bottom: '-26px'}, duration);
+});
+});
+</script>
+<style>
+.webzine-latest {position:relative;overflow:hidden;border:1px solid #e5e5e5;padding:10px 5px 0px;min-height:207px;}
+.webzine-item {margin-bottom:5px;width:50%;float:left}
+.webzine-latest .webzine-img-wrap {position:relative;overflow:hidden;width:40%;float:left}
+.webzine-latest .webzine-img {position:relative;overflow:hidden;padding:5px}
+.webzine-latest .img-box {position:relative;overflow:hidden;height:84px;background:#34343a;line-height:84px;text-align:center}
+.webzine-latest .img-box .no-image {color:#888;font-size:11px}
+.webzine-latest .img-comment {position:absolute;top:8px;left:8px;display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background:#74747a}
+.webzine-latest .img-box .video-icon {position:absolute;top:5px;right:5px;color:#fff;font-size:20px;line-height:20px}
+.webzine-latest .img-caption {color:#fff;font-size:11px;position:absolute;left:0;bottom:-26px;display:block;z-index:1;background:rgba(0, 0, 0, 0.7);text-align:left;width:100%;height:20px;line-height:20px;margin-bottom:0;padding:3px 5px}
+.webzine-latest .img-caption span {margin-right:7px}
+.webzine-latest .img-caption span i {color:#aaa}
+.webzine-latest .webzine-txt-wrap {position:relative;overflow:hidden;width:60%;float:right}
+.webzine-latest .webzine-txt {position:relative;overflow:hidden;padding:5px}
+.webzine-latest .txt-subj {margin-bottom:5px}
+.webzine-latest .txt-subj h5 {font-size:12px;font-weight:bold;margin:0;display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+.webzine-latest .webzine-txt a:hover .txt-subj h5 {color:#ff2a00;text-decoration:underline}
+.webzine-latest .txt-cont {position:relative;overflow:hidden;height:34px;font-size:11px;color:#888;margin-bottom:5px}
+.webzine-latest .txt-photo img {width:20px;height:20px;margin-right:2px}
+.webzine-latest .txt-photo .txt-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.webzine-latest .txt-nick {font-size:11px;color:#555}
+.webzine-latest .txt-time {font-size:11px;color:#555;margin-left:5px}
+.webzine-latest .txt-time .i-color {color:#bbb}
+@media (max-width: 1199px) {
+.webzine-latest .img-box {height:80px}
+.webzine-latest .txt-cont {height:17px}
+}
+</style></div>
+by 이일섭--></div><!--//end content-->
+<div id="side-content" class="side-right">
+<div class="margin-bottom-20">
+<section class="ol-before">
+<form name="foutlogin" action="https://sammaru.cbnu.ac.kr:443/bbs/login_check.php" onsubmit="return fhead_submit(this);" method="post" autocomplete="off" class="sky-form">
+<input type="hidden" name="url" value="%2F">
+<div class="headline">
+<h6>LOGIN</h6>
+</div>
+<div class="ol-account">
+<span class="left"><a href="https://sammaru.cbnu.ac.kr:443/bbs/register.php">회원가입</a></span>
+<span class="right">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/password_lost.php" id="ol_password_lost">아이디/비번찾기</a>
+</span>
+<div class="clear"></div>
+</div>
+<section>
+<div class="row">
+<div class="col col-12">
+<label class="input">
+<i class="icon-append fa fa-user"></i>
+<input type="text" id="ol_id" name="mb_id" required class="form-control" maxlength="20" placeholder="아이디">
+<b class="tooltip tooltip-top-right">아이디를 입력 해 주세요.</b>
+</label>
+</div>
+</div>
+</section>
+<section>
+<div class="row">
+<div class="col col-12">
+<label class="input">
+<i class="icon-append fa fa-lock"></i>
+<input type="password" name="mb_password" id="ol_pw" required class="form-control" maxlength="20" placeholder="비밀번호">
+<b class="tooltip tooltip-top-right">비밀번호를 입력 해 주세요.</b>
+</label>
+</div>
+</div>
+</section>
+<div class="left">
+<label class="checkbox"><input type="checkbox" name="auto_login" value="1" id="auto_login"><i></i><span class="ol-stay">자동로그인</span></label>
+</div>
+<div class="right">
+<button id="ol_submit" class="btn-e" type="submit">Login</button>
+</div>
+<div class="clear"></div>
+</form>
+</section>
+<style>
+.ol-before {border:1px solid #e5e5e5;background:#fff;padding:13px 10px}
+.ol-before .ol-account {font-size:12px;clear:both}
+.ol-before .ol-account span {padding-bottom:10px}
+.ol-before .ol-stay {font-size:12px;letter-spacing:-1px}
+</style>
+<script>
+$omi = $('#ol_id');
+$omp = $('#ol_pw');
+$omi_label = $('#ol_idlabel');
+$omi_label.addClass('ol_idlabel');
+$omp_label = $('#ol_pwlabel');
+$omp_label.addClass('ol_pwlabel');
+$(function() {
+$omi.focus(function() {
+$omi_label.css('visibility','hidden');
+});
+$omp.focus(function() {
+$omp_label.css('visibility','hidden');
+});
+$omi.blur(function() {
+$this = $(this);
+if($this.attr('id') == "ol_id" && $this.attr('value') == "") $omi_label.css('visibility','visible');
+});
+$omp.blur(function() {
+$this = $(this);
+if($this.attr('id') == "ol_pw" && $this.attr('value') == "") $omp_label.css('visibility','visible');
+});
+$("#auto_login").click(function(){
+if ($(this).is(":checked")) {
+if(!confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?"))
+return false;
+}
+});
+});
+function fhead_submit(f)
+{
+if (f.mb_id.value == '' || f.mb_id.value == $("#ol_id").attr("placeholder")) {
+alert("아이디를 입력해 주세요.");
+f.mb_id.select();
+f.mb_id.focus();
+return false;
+}
+if (f.mb_password.value == '' || f.mb_password.value == $("#ol_pw").attr("placeholder")) {
+alert("비밀번호를 입력해 주세요.");
+f.mb_password.select();
+f.mb_password.focus();
+return false;
+}
+return true;
+}
+</script></div>
+<div class="margin-bottom-20">
+<div class="side-tab margin-bottom-20">
+<div class="tab-e2">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#side-tn-1" data-toggle="tab">새글</a></li>
+<li class="last"><a href="#side-tn-2" data-toggle="tab">새댓글</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade active in" id="side-tn-1">
+<div class="tab-content-wrap">
+<div class="tab_newpost">
+<article class="new-post">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_study&amp;wr_id=67">
+<div class="post-subject">
+[BOJ 1039] 교환(BFS)</div>
+<span class="post-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="post-nick">15김또띠</span>
+<span class="post-time"><i class="fa fa-clock-o i-color"></i> 2019-11-07</span>
+</a>
+</article>
+<article class="new-post">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=31">
+<div class="post-subject">
+19년도 2학기 1학년 세미나 ppt3</div>
+<span class="post-photo"><span class="post-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="post-nick">최병도</span>
+<span class="post-time"><i class="fa fa-clock-o i-color"></i> 2019-11-02</span>
+</a>
+</article>
+<article class="new-post">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=161">
+<div class="post-subject">
+2019년 홍장의 교수님 소프트웨어공학 중간고사</div>
+<span class="post-photo"><span class="post-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="post-nick">16천아현</span>
+<span class="post-time"><i class="fa fa-clock-o i-color"></i> 2019-10-31</span>
+</a>
+</article>
+<article class="new-post">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_data&amp;wr_id=30">
+<div class="post-subject">
+Re: 19년도 2학기 1학년 세미나 ppt2(수정)</div>
+<span class="post-photo"><span class="post-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="post-nick">최병도</span>
+<span class="post-time"><i class="fa fa-clock-o i-color"></i> 2019-10-29</span>
+</a>
+</article>
+<article class="new-post">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=158">
+<div class="post-subject">
+<span class="post-comment">+1</span> 2019년 프로그래밍언어론 중간고사 조승범</div>
+<span class="post-photo"><span class="post-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="post-nick">15얀주</span>
+<span class="post-time"><i class="fa fa-clock-o i-color"></i> 2019-10-24</span>
+</a>
+</article>
+</div>
+<style>
+.new-post{position:relative;overflow:hidden;padding:8px 0;border-top:1px solid #eee}
+.new-post:first-child{border-top:none}
+.new-post .margin-hr-5 {height:1px;border-top:1px dotted #eee;margin:5px 0}
+.new-post .post-subject {display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;font-size:12px;margin-bottom:3px}
+.new-post a:hover .post-subject {text-decoration:underline}
+.new-post .post-comment {display:inline-block;min-width:35px;padding:0px 3px;font-size:10px;font-weight:300;line-height:13px;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;background-color:#74747a}
+.new-post .post-photo img {width:20px;height:20px;margin-right:2px}
+.new-post .post-photo .post-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.new-post .post-nick {font-size:11px;color:#777}
+.new-post .post-time {font-size:11px;color:#777;margin-left:5px}
+.new-post .post-time .i-color {color:#bbb}
+</style></div>
+</div>
+<div class="tab-pane fade in" id="side-tn-2">
+<div class="tab-content-wrap">
+<div class="tab_newcomment">
+<article class="new-comment">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=160#c_160">
+<div class="comment-subject">
+부분점수를 진짜진짜 잘 주세요! 몰라도 얼렁뚱땅 아무말이나 쓰세욥…</div>
+<span class="comment-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="comment-nick">15김또띠</span>
+<span class="comment-time"><i class="fa fa-clock-o i-color"></i> 2019-10-25</span>
+</a>
+</article>
+<article class="new-comment">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_study&amp;wr_id=66#c_66">
+<div class="comment-subject">
+디피고수는 연락주세욥 같이 공부합시다…</div>
+<span class="comment-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="comment-nick">15김또띠</span>
+<span class="comment-time"><i class="fa fa-clock-o i-color"></i> 2019-10-25</span>
+</a>
+</article>
+<article class="new-comment">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=159#c_159">
+<div class="comment-subject">
+얀주 재수강은 하지 말아욥…</div>
+<span class="comment-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="comment-nick">15김또띠</span>
+<span class="comment-time"><i class="fa fa-clock-o i-color"></i> 2019-10-24</span>
+</a>
+</article>
+<article class="new-comment">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=153#c_153">
+<div class="comment-subject">
+ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ…</div>
+<span class="comment-photo"><span class="comment-user-icon"><i class="fa fa-user"></i></span></span>
+<span class="comment-nick">관리자</span>
+<span class="comment-time"><i class="fa fa-clock-o i-color"></i> 2019-10-19</span>
+</a>
+</article>
+<article class="new-comment">
+<a href="https://sammaru.cbnu.ac.kr:443/bbs/board.php?bo_table=sam_jokbo&amp;wr_id=152#c_152">
+<div class="comment-subject">
+얀주님 족보 완전 많네엽 ㅎㄷㄷ…</div>
+<span class="comment-photo"><img class="user-photo" src="https://sammaru.cbnu.ac.kr:443/data/member/profile/five_cow_jean.png"></span>
+<span class="comment-nick">15김또띠</span>
+<span class="comment-time"><i class="fa fa-clock-o i-color"></i> 2019-10-19</span>
+</a>
+</article>
+</div>
+<style>
+.new-comment {position:relative;overflow:hidden;padding:8px 0;border-top:1px solid #eee}
+.new-comment:first-child {border-top:none}
+.new-comment .margin-hr-5 {height:1px;border-top:1px dotted #eee;margin:5px 0}
+.new-comment .comment-subject {display:block;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;font-size:12px;margin-bottom:3px}
+.new-comment a:hover .comment-subject {text-decoration:underline}
+.new-comment .comment-photo img {width:20px;height:20px;margin-right:2px}
+.new-comment .comment-photo .comment-user-icon {width:20px;height:20px;font-size:14px;line-height:20px;text-align:center;background:#84848a;color:#fff;margin-right:2px;display:inline-block;white-space:nowrap;vertical-align:baseline}
+.new-comment .comment-nick {font-size:11px;color:#777}
+.new-comment .comment-time {font-size:11px;color:#777;margin-left:5px}
+.new-comment .comment-time .i-color {color:#bbb}
+</style></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="margin-bottom-20">
+</div>
+<!--
+<div class="margin-bottom-20">
+<div class="latest-ranking-w">
+<div class="tab-e1">
+<div class="headline">
+<h6>Ranking</h6>
+</div>
+<ul class="nav nav-tabs">
+<li class="active"><a href="#rank-1" data-toggle="tab">오늘포인트</a></li>
+<li class=""><a href="#rank-2" data-toggle="tab">전체포인트</a></li>
+<li class=""><a href="#rank-3" data-toggle="tab">경험치</a></li>
+</ul>
+<div class="tab-content bg-color-white">
+<div class="tab-pane fade active in" id="rank-1">
+<div class="latest-ranking-e1">
+<ul class="list-unstyled">
+<p class="t-center">출력할 랭킹이 없습니다.</p>
+</ul>
+</div>
+</div>
+<div class="tab-pane fade in" id="rank-2">
+<div class="latest-ranking-e1">
+<ul class="list-unstyled">
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-1">01</span>
+15김또띠</div>
+<div class="width-40 right">
+19,000</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-2">02</span>
+16윤이진</div>
+<div class="width-40 right">
+14,400</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-3">03</span>
+14장정현</div>
+<div class="width-40 right">
+13,000</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">04</span>
+최재우</div>
+<div class="width-40 right">
+11,100</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">05</span>
+15정민규</div>
+<div class="width-40 right">
+10,400</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">06</span>
+최병도</div>
+<div class="width-40 right">
+9,900</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">07</span>
+새콤하고달콤</div>
+<div class="width-40 right">
+8,900</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">08</span>
+14이치호</div>
+<div class="width-40 right">
+8,800</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">09</span>
+16홍주미</div>
+<div class="width-40 right">
+8,000</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">10</span>
+15허지용</div>
+<div class="width-40 right">
+6,500</div>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="tab-pane fade in" id="rank-3">
+<div class="latest-ranking-e1">
+<ul class="list-unstyled">
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-1">01</span>
+15김또띠</div>
+<div class="width-40 right">
+4,127</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-2">02</span>
+14장정현</div>
+<div class="width-40 right">
+3,004</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ranking-num-3">03</span>
+16윤이진</div>
+<div class="width-40 right">
+2,910</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">04</span>
+15정민규</div>
+<div class="width-40 right">
+2,217</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">05</span>
+최재우</div>
+<div class="width-40 right">
+2,201</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">06</span>
+최병도</div>
+<div class="width-40 right">
+2,044</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">07</span>
+새콤하고달콤</div>
+<div class="width-40 right">
+1,818</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">08</span>
+14이치호</div>
+<div class="width-40 right">
+1,694</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">09</span>
+16홍주미</div>
+<div class="width-40 right">
+1,570</div>
+<div class="clear"></div>
+</li>
+<li>
+<div class="width-60 left ellipsis">
+<span class="ranking-num ">10</span>
+15김두회</div>
+<div class="width-40 right">
+1,136</div>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+.latest-ranking-e1 ul {margin-bottom:0}
+.latest-ranking-e1 li {padding:4px 0;border-bottom:1px dotted #e5e5e5}
+.latest-ranking-e1 li:last-child {border-bottom:0}
+.latest-ranking-e1 .ranking-num {background:#555;padding:3px 3px;color:#fff;margin-right:5px;font-size:11px}
+.latest-ranking-e1 .ranking-num-1 {background:#ff2a00}
+.latest-ranking-e1 .ranking-num-2 {background:#ff9500}
+.latest-ranking-e1 .ranking-num-3 {background:#ff9500}
+.latest-ranking-e1 .left {padding-right:0;padding-left:0;font-size:12px;color:#333}
+.latest-ranking-e1 .right {padding-right:0;padding-left:0;text-align:right;color:#ff2a00;font-size:11px;margin-top:4px}
+.latest-ranking-w .tab-e1 .tab-content img {margin-top:0;margin-bottom:0}
+.latest-ranking-w .tab-e1 .nav-tabs a {padding:5px 10px}
+</style></div>
+<div>
+<div class="popular">
+<div class="headline">
+<h6>인기검색어</h6>
+</div>
+<section class="popular-box">
+<ul class="list-unstyled">
+</ul>
+</section>
+</div>
+<div class="margin-bottom-20"></div>
+<style>
+.popular .popular-box {display:block;overflow:hidden;border:1px solid #e5e5e5;background:#fff;padding:10px 10px 5px}
+.popular li {float:left;margin:0 1px 5px}
+</style></div>
+-->
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/theia-sticky-sidebar.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+App.initSideSticky();
+});
+</script>
+</div>
+<div class="clear"></div>
+</div><!--//end container-->
+</div><!--//end eb-body-->
+<footer class="footer footer-dark">
+<div class="container">
+<div class="footer-col">
+<div class="footer-col-space">
+<div class="heading-footer"><h4>About Us</h4></div>
+<p class="margin-bottom-15">충북대학교 전자정보대학 소프트웨어학과<br><br>회장 : 강민규<br>부회장 : 천아현<br>총무 : 허지용<br>기획 : 홍주미<br>교육 : 정민규, 김일환<br>비품관리 : 김종우</p>
+<ul class="social-icons">
+<li><a href="https://www.facebook.com/groups/SAMMaru" class="social_facebook"></a></li>
+<!--<li><a href="http://blog.naver.com/ls123kr" class="social_naverblog"></a></li>-->
+<!-- <li><a href="#" class="social_twitter"></a></li>
+<li><a href="#" class="social_google"></a></li>
+<li><a href="#" class="social_kakaostory"></a></li>
+<li><a href="#" class="social_band"></a></li>
+<li><a href="#" class="social_youtube"></a></li>
+<li><a href="#" class="social_instagram"></a></li>
+<li><a href="#" class="social_pinterest"></a></li>
+<li><a href="#" class="social_behance"></a></li>
+<li><a href="#" class="social_tumblr"></a></li>-->
+</ul>
+</div>
+</div>
+<div class="footer-col">
+<div class="footer-col-space">
+<div class="heading-footer"><h4>Recent Notice</h4></div>
+<div class="footer-latest-wrap">
+<ul class="list-unstyled footer-latest">
+<p class="t-center">최신글이 없습니다.</p>
+</ul>
+</div>
+<style>
+.footer-latest-wrap .footer-latest {margin-bottom:0}
+.footer-latest-wrap .footer-latest li {padding:12px 0px}
+.footer-latest-wrap .footer-latest li:first-child {padding-top:0 !important;border-top:none !important}
+.footer-latest-wrap .footer-latest li a {font-size:12px;margin-bottom:3px;display:block;overflow:hidden;white-space:nowrap;word-wrap:normal;text-overflow:ellipsis}
+.footer-latest-wrap .footer-latest li small {display:block}
+.footer.footer-light .footer-latest-wrap .footer-latest li {border-top:dotted 1px #ddd}
+.footer.footer-light .footer-latest-wrap .footer-latest li a {color:#777}
+.footer.footer-light .footer-latest-wrap .footer-latest a:hover {color:#000;text-decoration:underline}
+.footer.footer-light .footer-latest-wrap .footer-latest li small {color:#555}
+.footer.footer-dark .footer-latest-wrap .footer-latest li {border-top:solid 1px #333}
+.footer.footer-dark .footer-latest-wrap .footer-latest li a {color:#888}
+.footer.footer-dark .footer-latest-wrap .footer-latest a:hover {color:#bbb}
+.footer.footer-dark .footer-latest-wrap .footer-latest li small {color:#666}
+</style></div>
+</div>
+<div class="footer-col">
+<div class="footer-col-space">
+<div class="heading-footer"><h4>Information</h4></div>
+<ul class="list-unstyled footer-link-list">
+<li><a href="https://sammaru.cbnu.ac.kr:443/page/?pid=aboutus">About Us</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/page/?pid=provision">이용약관</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/page/?pid=privacy">개인정보 취급방침</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/page/?pid=noemail">이메일 무단수집거부</a></li>
+<li><a href="https://sammaru.cbnu.ac.kr:443/page/?pid=contactus">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-col">
+<div class="footer-col-space">
+<div class="heading-footer"><h4>Contact Us</h4></div>
+<ul class="list-unstyled contactus">
+<li>
+<i class="fa fa-map-marker"></i>
+충북대학교 S4-1 113호<br>
+</li>
+<li>
+<i class="fa fa-phone"></i>
+TEL : 010-3676-0754(회장)<br>
+TEL : 010-6792-0512(부회장,관리자)
+</li>
+<li>
+<i class="fa fa-globe"></i>
+<a href="mailto:cah0512@naver.com">webmaster : cah0512@naver.com</a><br>
+<a href="http://sammaru.cbnu.ac.kr">http://sammaru.cbnu.ac.kr</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<div class="copyright copyright-dark">
+<div class="container">
+<p class="t-center">Copyright &copy; Sammaru. All Rights Reserved.</p>
+<a href="https://sammaru.cbnu.ac.kr/index.php?device=mobile" class="eb-mobile-btn"><span class="label label-light">모바일버전</span></a>
+</div>
+</div>
+</div><!--//end wide-layout or boxed-layout-->
+</div><!--//end wrapper-->
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/back-to-top.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/plugins/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/jquery.bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/jquery.sticky.min.js"></script>
+<script type="text/javascript" src="/eyoom/theme/pc_basic2/js/app.js"></script>
+<script>
+jQuery(document).ready(function() {
+App.init();
+App.initNavfix();
+App.initTooltip();
+});
+</script>
+<!--[if lt IE 9]>
+<script src="/eyoom/theme/pc_basic2/js/respond.js"></script>
+<script src="/eyoom/theme/pc_basic2/js/html5shiv.js"></script>
+<script src="/eyoom/theme/pc_basic2/plugins/sky-forms/version-2.0.5/js/sky-forms-ie8.js"></script>
+<![endif]-->
+<script>
+$(function(){
+$("#follow button").click(function(){
+var action = $(this).attr('value');
+var target = $(this).attr('name');
+var url = "https://sammaru.cbnu.ac.kr:443/eyoom/core/mypage/following.ajax.php";
+$.post(url, {'action':action,'user':target}, function(data) {
+if(data.result == 'yes') {
+var botton = $("."+target);
+if(action == 'following') {
+botton.removeClass('btn-e-red');
+botton.addClass('btn-e-dark');
+botton.attr('title','친구관계를 해제합니다.');
+botton.html('<i class="fa fa-times"></i> unfollow');
+botton.attr('value','unfollow');
+}
+if(action == 'unfollow') {
+botton.removeClass('btn-e-dark');
+botton.addClass('btn-e-red');
+botton.attr('title','친구관계를 신청합니다.');
+botton.html('<i class="fa fa-check"></i> following');
+botton.attr('value','following');
+}
+} else if(data.result == 'no'){
+alert('소셜기능을 Off 시켜놓은 회원입니다.');
+}
+},"json");
+});
+});
+</script>
+<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+<!--[if lte IE 7]>
+<script>
+$(function() {
+var $sv_use = $(".sv_use");
+var count = $sv_use.length;
+$sv_use.each(function() {
+$(this).css("z-index", count);
+$(this).css("position", "relative");
+count = count - 1;
+});
+});
+</script>
+<![endif]-->
+</body>
+</html>
